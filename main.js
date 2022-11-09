@@ -1,1 +1,1 @@
-console.log("HEllo");
+(()=>{"use strict";const e={items:t=[],project_name:"home",editProjectName(e){this.project_name=e},addItem:e=>{t.push(e)},removeItem:e=>{t.indexOf(e)>-1&&t.splice(t.indexOf(e),1)}};var t;const o={projects:s=[e],addItem:e=>{s.push(e)},removeItem:e=>{s.indexOf(e)>-1&&s.splice(s.indexOf(e),1)}};var s;console.log(o)})();
