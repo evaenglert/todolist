@@ -1,33 +1,11 @@
+import {ToDoTask, ToDoProject, ProjectManager} from './backend.js'
 
+// -------------------------------------------------------------------
+// 'home' project is not deletable. <- have to make sure this is encoded.
 
-const ToDoTask = function(title, description, dueDate, priority) {
-  // Describes a single task in the todo list
+const default_project = ToDoProject('home', []);
+const projectManager = ProjectManager([default_project]);
+console.log(projectManager);
 
-  return {
-    title, description, dueDate, priority,
-    modifyProperty(property_to_modify, new_value) {
-      this[property_to_modify] = new_value; }
-
-  }}
-
-
-const ToDoProject = function(project_name, items) {
-
-  const getProjectName = () => project_name;
-
-  const editProjectName = (new_project_name) => {
-    project_name = new_project_name;
-  }
-
-  const addItem = (todo_item) => {
-    items.push(todo_item)
-  }
-
-  const removeItem = (todo_item) => {
-    if (items.indexOf(todo_item) > -1) {
-      items.splice(items.indexOf(todo_item), 1);
-    }
-  }
-
-  return {items, editProjectName, getProjectName, addItem, removeItem}
-}
+// next thing: need to create layout for the different pages.
+// Basic layout is the same for all pages
