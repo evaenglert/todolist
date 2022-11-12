@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <dev id="content">
+  <!-- <dev id="content">
     <nav>
       <h3>WhatToDo</h3>
       <button>+</button>
@@ -25,7 +25,30 @@
       </ul>
     </dev>
     <dev id="main-content"></dev>
-  </dev>
+  </dev> -->
+    <dev id="content">
+      <nav>
+        <h3>WhatToDo</h3>
+        <button>+</button>
+      </nav>
+      <dev id="side-bar">
+        <ul>
+          <li>Home</li>
+          <li class="selected">Today</li>
+          <li>Upcoming</li>
+        </ul>
+        <h3 id="project-title">Projects</h3>
+        <ul>
+          <li>Sample Project</li>
+        </ul>
+      </dev>
+      <dev id="main-content">
+        <h3>Home</h3>
+        <ul id="todo-list">
+          <li class="add-task"><div>+</div> Add Task</li>
+        </ul>
+      </dev>
+    </dev>
   <script src="main.js"></script>
 </body>
 </html>
