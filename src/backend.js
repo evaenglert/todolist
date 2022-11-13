@@ -1,4 +1,4 @@
-
+import { manipulateDOM } from "./manipulateDom";
 
 const ToDoTask = function (is_done, title, description, dueDate, priority, project) {
   // Describes a single task in the todo list
@@ -39,12 +39,15 @@ const ProjectManager = function (projects) {
 
   const addItem = (project_name) => {
     projects.push(project_name)
+    // some function here that makes sure that the new project is also added to the front end.
+    manipulateDOM.add_to_sidebar(project_name.project_name);
   }
 
   const removeItem = (project_name) => {
     if (projects.indexOf(project_name) > -1) {
       projects.splice(projects.indexOf(project_name), 1);
     }
+    manipulateDOM.remove_from_sidebar(project_name.project_name);
   }
 
   return { projects, addItem, removeItem }
