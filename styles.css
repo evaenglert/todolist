@@ -58,10 +58,10 @@ ul {
   list-style-type: none;
   padding-left: 0px;
   padding-right: 15px;
+  /* padding-top: 20px; */
 
   display: flex;
   flex-direction: column;
-  /* gap: 10px; */
 }
 
 li {
@@ -84,8 +84,46 @@ li.selected {
 
 #todo-list li {
   padding: 0px;
+  text-align: left;
+}
+
+#main-content>h3 {
+  font-size: 25px;
+  padding-bottom: 20px;
 }
 
 .add-task {
-  display: flex;
+  padding: 0px;
+  text-align: left;
+  font-size: 14px;
+  width: 100%;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+
+  color: rgb(149, 149, 149);
+}
+
+.add-button {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+
+  font-size: 23px;
+  margin-right: 7px;
+  color: rgb(234, 60, 60);
+
+  border-radius: 50%;
+  height: 17px;
+  width: 17px;
+  transform: translateY(4px);
+}
+
+.add-task:hover {
+  color: rgb(234, 60, 60);
+}
+
+.add-task:hover .add-button {
+  color: white;
+  background-color: rgb(234, 60, 60);
 }
