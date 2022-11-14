@@ -8,6 +8,8 @@ const manipulateDOM = (() => {
     new_project.textContent = project_to_add
 
     projects.appendChild(new_project);
+
+    return new_project;
   }
 
   const remove_from_sidebar = (project_to_remove) => {

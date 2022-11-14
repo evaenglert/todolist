@@ -18,8 +18,6 @@ projectManager.removeItem(project2);
 
 
 console.log(projectManager);
-renderTasks('Home');
-
 
 const side_bar = document.querySelector('#side-bar');
 
@@ -27,9 +25,8 @@ const home_menu_item = document.querySelector('#home-project');
 const today_menu_item = document.querySelector('#today');
 const upcoming_menu_item = document.querySelector('#upcoming');
 
-home_menu_item.addEventListener("click", (e) => renderTasks(e, 'Home'));
-today_menu_item.addEventListener("click", (e) => renderTasks(e, 'Today'));
-upcoming_menu_item.addEventListener("click", (e) => renderTasks(e, 'Upcoming'));
+renderTasks(home_menu_item, 'Home');
 
-// next thing: need to create layout for the different pages.
-// Basic layout is the same for all pages
+home_menu_item.addEventListener("click", (e) => renderTasks(e.target, 'Home'));
+today_menu_item.addEventListener("click", (e) => renderTasks(e.target, 'Today'));
+upcoming_menu_item.addEventListener("click", (e) => renderTasks(e.target, 'Upcoming'));

@@ -17,7 +17,7 @@ const renderTasks = (e, project_name) => {
     }
   }
 
-
+  e.classList.add('selected');
 
   const project_title = document.createElement('h3');
   project_title.textContent = project_name;
