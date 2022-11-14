@@ -1,3 +1,4 @@
+import { manipulateDOM } from "./manipulateDom";
 
 const renderTasks = (e, project_name) => {
 
@@ -37,8 +38,9 @@ const renderTasks = (e, project_name) => {
   add_task_text.textContent = 'Add Task';
 
   add_task_button.appendChild(add_task_text);
-
+  add_task_button.addEventListener('click', (e) => manipulateDOM().create_add_task_form(e.target));
   add_task_list_element.appendChild(add_task_button);
+
   todo_list.appendChild(add_task_list_element);
 
   main_content.appendChild(project_title);

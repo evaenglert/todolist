@@ -82,6 +82,10 @@ li.selected {
   padding-bottom: 5px;
 }
 
+#todo-list {
+  padding-right: 0px;
+}
+
 #todo-list li {
   padding: 0px;
   padding: 8px 0px;
@@ -119,12 +123,17 @@ li.selected {
   justify-content: center;
   align-items: center;
   border: 1px black solid;
+  color: transparent;
   border-radius: 50%;
-  font-size: 23px;
+  font-size: 15px;
   height: 15px;
   width: 15px;
   margin-right: 7px;
-  transform: translateY(4px);
+  transform: translateY(2px);
+}
+
+.checkbox:hover {
+  color: black;
 }
 
 .add-button {
@@ -149,4 +158,35 @@ li.selected {
 .add-task:hover .add-button {
   color: white;
   background-color: rgb(234, 60, 60);
+}
+
+.todo-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: right;
+  gap: 10px
+}
+
+.text-input-todo {
+  width: 99%;
+  height: 60px;
+}
+
+.form-footer {
+  display: flex;
+  justify-content: right;
+  gap: 10px;
+}
+
+.form-footer button {
+  border: none;
+  border-radius: 5px;
+  height: 30px;
+  font-size: 14px;
+  padding: 0px 12px;
+}
+
+.add-task-button {
+  background-color: rgb(234, 60, 60);
+  color: white;
 }

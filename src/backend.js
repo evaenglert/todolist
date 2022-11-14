@@ -40,7 +40,7 @@ const ProjectManager = function (projects) {
   const addItem = (project_name) => {
     projects.push(project_name)
     // some function here that makes sure that the new project is also added to the front end.
-    const new_project = manipulateDOM.add_to_sidebar(project_name.project_name);
+    const new_project = manipulateDOM().add_to_sidebar(project_name.project_name);
     new_project.addEventListener('click', (e) => renderTasks(e.target, project_name.project_name));
   }
 
@@ -48,7 +48,7 @@ const ProjectManager = function (projects) {
     if (projects.indexOf(project_name) > -1) {
       projects.splice(projects.indexOf(project_name), 1);
     }
-    manipulateDOM.remove_from_sidebar(project_name.project_name);
+    manipulateDOM().remove_from_sidebar(project_name.project_name);
   }
 
   return { projects, addItem, removeItem }
