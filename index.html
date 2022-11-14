@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <!-- <dev id="content">
+  <dev id="content">
     <nav>
       <h3>WhatToDo</h3>
       <button>+</button>
@@ -25,8 +25,8 @@
       </ul>
     </dev>
     <dev id="main-content"></dev>
-  </dev> -->
-    <dev id="content">
+  </dev>
+    <!-- <dev id="content">
       <nav>
         <h3>WhatToDo</h3>
         <button>+</button>
@@ -45,14 +45,23 @@
       <dev id="main-content">
         <h3>Home</h3>
         <ul id="todo-list">
-          <li> <button class="todo-task"><div class="checkbox"></div><span>Done haha</span></button></li>
+          <li> <button class="todo-task"><div class="checkbox">✓</div><span>Done haha</span></button></li>
           <li> <button class="todo-task">
-              <div class="checkbox"></div><span>Another item to do </span>
+              <div class="checkbox">✓</div><span>Another item to do </span>
             </button></li>
           <li> <button class="add-task"><span class="add-button">+</span><span>Add Task</span></button></li>
+          <li>
+            <div class='todo-form'>
+              <input class='text-input-todo' type="text">
+              <div class="form-footer">
+                <button class="cancel-button">Cancel</button>
+                <button class="add-task-button">Add Task</button>
+              </div>
+            </div>
+          </li>
         </ul>
       </dev>
-    </dev>
-  <!-- <script src="main.js"></script> -->
+    </dev> -->
+  <script src="main.js"></script>
 </body>
 </html>
