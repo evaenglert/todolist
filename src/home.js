@@ -25,24 +25,8 @@ const renderTasks = (e, project_name) => {
 
   const todo_list = document.createElement('ul');
   todo_list.setAttribute('id', 'todo-list');
-  const add_task_list_element = document.createElement('li');
-  add_task_list_element.setAttribute('id', 'add-task-li');
-  const add_task_button = document.createElement('button');
-  add_task_button.setAttribute('class', 'add-task');
 
-  const add_task_plus = document.createElement('span');
-  add_task_plus.setAttribute('class', 'add-button');
-  add_task_plus.textContent = '+';
-  add_task_button.appendChild(add_task_plus);
-
-  const add_task_text = document.createElement('span');
-  add_task_text.textContent = 'Add Task';
-
-  add_task_button.appendChild(add_task_text);
-  add_task_button.addEventListener('click', (e) => manipulateDOM().create_add_task_form(e.target));
-  add_task_list_element.appendChild(add_task_button);
-
-  todo_list.appendChild(add_task_list_element);
+  manipulateDOM().create_add_task_button(todo_list);
 
   main_content.appendChild(project_title);
   main_content.appendChild(todo_list);
@@ -50,10 +34,3 @@ const renderTasks = (e, project_name) => {
 };
 
 export {renderTasks}
-
-{/* <dev id="main-content">
-  <h3>Home</h3>
-  <ul id="todo-list">
-    <li> <button class="add-task"><span class="add-button">+</span> Add Task</button></li>
-  </ul>
-</dev> */}

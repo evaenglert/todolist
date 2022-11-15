@@ -21,6 +21,29 @@ const manipulateDOM = () => {
     }
   }
 
+  const create_add_task_button = (todo_list_already) => {
+    const add_task_list_element = document.createElement('li');
+    add_task_list_element.setAttribute('id', 'add-task-li');
+    const add_task_button = document.createElement('button');
+    add_task_button.setAttribute('class', 'add-task');
+
+    const add_task_plus = document.createElement('span');
+    add_task_plus.setAttribute('class', 'add-button');
+    add_task_plus.textContent = '+';
+    add_task_button.appendChild(add_task_plus);
+
+    const add_task_text = document.createElement('span');
+    add_task_text.textContent = 'Add Task';
+
+    add_task_button.appendChild(add_task_text);
+    add_task_button.addEventListener('click', (e) => manipulateDOM().create_add_task_form(e.target));
+    add_task_list_element.appendChild(add_task_button);
+
+    if (todo_list_already) { todo_list_already.appendChild(add_task_list_element);}
+    else { todo_list.appendChild(add_task_list_element); }
+
+  }
+
   const create_add_task_form = () => {
     const add_task_li = document.querySelector('#add-task-li');
     add_task_li.remove();
@@ -39,10 +62,12 @@ const manipulateDOM = () => {
     const cancel_button = document.createElement('button');
     cancel_button.setAttribute('class', 'cancel-button');
     cancel_button.textContent = 'Cancel';
+    cancel_button.addEventListener('click', () => { list_element.remove(); create_add_task_button() });
 
     const add_task_button = document.createElement('button');
     add_task_button.setAttribute('class', 'add-task-button');
     add_task_button.textContent = 'Add Task';
+    // add_task_button.addEventListener('click', () => {list_element.remove(); });
 
     form_footer.appendChild(cancel_button);
     form_footer.appendChild(add_task_button);
@@ -56,7 +81,7 @@ const manipulateDOM = () => {
   }
 
 
-  return { add_to_sidebar, remove_from_sidebar, create_add_task_form }
+  return { add_to_sidebar, remove_from_sidebar, create_add_task_button, create_add_task_form }
 };
 
 
