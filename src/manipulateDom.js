@@ -21,9 +21,9 @@ const manipulateDOM = () => {
     }
   }
 
-  const create_add_task_form = (e) => {
-    e.innerHTML ='';
-    e.remove();
+  const create_add_task_form = () => {
+    const add_task_li = document.querySelector('#add-task-li');
+    add_task_li.remove();
 
     const list_element = document.createElement('li');
     const todo_form = document.createElement('div');

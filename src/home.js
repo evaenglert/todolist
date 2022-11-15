@@ -26,6 +26,7 @@ const renderTasks = (e, project_name) => {
   const todo_list = document.createElement('ul');
   todo_list.setAttribute('id', 'todo-list');
   const add_task_list_element = document.createElement('li');
+  add_task_list_element.setAttribute('id', 'add-task-li');
   const add_task_button = document.createElement('button');
   add_task_button.setAttribute('class', 'add-task');
 
