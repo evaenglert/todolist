@@ -1,3 +1,4 @@
+import { ToDoTask, ToDoProject, ProjectManager } from './backend.js'
 
 const manipulateDOM = () => {
   const side_bar = document.querySelector('#side-bar');
@@ -21,7 +22,7 @@ const manipulateDOM = () => {
     }
   }
 
-  const create_add_task_button = (todo_list_already) => {
+  const create_add_task_button = (todo_list_already, project) => {
     const add_task_list_element = document.createElement('li');
     add_task_list_element.setAttribute('id', 'add-task-li');
     const add_task_button = document.createElement('button');
@@ -36,7 +37,7 @@ const manipulateDOM = () => {
     add_task_text.textContent = 'Add Task';
 
     add_task_button.appendChild(add_task_text);
-    add_task_button.addEventListener('click', (e) => manipulateDOM().create_add_task_form(e.target));
+    add_task_button.addEventListener('click', () => manipulateDOM().create_add_task_form(project));
     add_task_list_element.appendChild(add_task_button);
 
     if (todo_list_already) { todo_list_already.appendChild(add_task_list_element);}
@@ -44,7 +45,7 @@ const manipulateDOM = () => {
 
   }
 
-  const create_add_task_form = () => {
+  const create_add_task_form = (project) => {
     const add_task_li = document.querySelector('#add-task-li');
     add_task_li.remove();
 
@@ -67,7 +68,12 @@ const manipulateDOM = () => {
     const add_task_button = document.createElement('button');
     add_task_button.setAttribute('class', 'add-task-button');
     add_task_button.textContent = 'Add Task';
-    // add_task_button.addEventListener('click', () => {list_element.remove(); });
+    add_task_button.addEventListener('click', () => {
+      list_element.remove();
+      const new_task = ToDoTask(false, text_input_todo.value);
+      if (project) { project.addItem(new_task); }
+      create_add_task_button();
+    });
 
     form_footer.appendChild(cancel_button);
     form_footer.appendChild(add_task_button);

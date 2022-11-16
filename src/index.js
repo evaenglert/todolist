@@ -29,6 +29,6 @@ renderTasks(home_menu_item, 'Home');
 // manipulateDOM().create_add_task_form();
 
 
-home_menu_item.addEventListener("click", (e) => renderTasks(e.target, 'Home'));
+home_menu_item.addEventListener("click", (e) => renderTasks(e.target, 'Home', default_project));
 today_menu_item.addEventListener("click", (e) => renderTasks(e.target, 'Today'));
 upcoming_menu_item.addEventListener("click", (e) => renderTasks(e.target, 'Upcoming'));

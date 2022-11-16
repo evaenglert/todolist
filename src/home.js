@@ -1,6 +1,6 @@
 import { manipulateDOM } from "./manipulateDom";
 
-const renderTasks = (e, project_name) => {
+const renderTasks = (e, project_name, project) => {
 
   const main_content = document.querySelector('#main-content');
   main_content.innerHTML = "";
@@ -26,7 +26,7 @@ const renderTasks = (e, project_name) => {
   const todo_list = document.createElement('ul');
   todo_list.setAttribute('id', 'todo-list');
 
-  manipulateDOM().create_add_task_button(todo_list);
+  manipulateDOM().create_add_task_button(todo_list, project);
 
   main_content.appendChild(project_title);
   main_content.appendChild(todo_list);
