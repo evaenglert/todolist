@@ -26,10 +26,12 @@ const renderTasks = (e, project_name, project) => {
   const todo_list = document.createElement('ul');
   todo_list.setAttribute('id', 'todo-list');
 
-  manipulateDOM().create_add_task_button(todo_list, project);
-
   main_content.appendChild(project_title);
   main_content.appendChild(todo_list);
+
+  manipulateDOM().refresh_todo_list_display(todo_list, project.items);
+  manipulateDOM().create_add_task_button(todo_list, project);
+
 
 };
 

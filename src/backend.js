@@ -41,7 +41,7 @@ const ProjectManager = function (projects) {
     projects.push(project_name)
     // some function here that makes sure that the new project is also added to the front end.
     const new_project = manipulateDOM().add_to_sidebar(project_name.project_name);
-    new_project.addEventListener('click', (e) => renderTasks(e.target, project_name.project_name));
+    new_project.addEventListener('click', (e) => renderTasks(e.target, project_name.project_name, project_name));
   }
 
   const removeItem = (project_name) => {

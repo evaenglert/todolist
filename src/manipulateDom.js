@@ -22,7 +22,7 @@ const manipulateDOM = () => {
     }
   }
 
-  const create_add_task_button = (todo_list_already, project) => {
+  const create_add_task_button = (todo_list_node, project) => {
     const add_task_list_element = document.createElement('li');
     add_task_list_element.setAttribute('id', 'add-task-li');
     const add_task_button = document.createElement('button');
@@ -40,7 +40,7 @@ const manipulateDOM = () => {
     add_task_button.addEventListener('click', () => manipulateDOM().create_add_task_form(project));
     add_task_list_element.appendChild(add_task_button);
 
-    if (todo_list_already) { todo_list_already.appendChild(add_task_list_element);}
+    if (todo_list_node) { todo_list_node.appendChild(add_task_list_element);}
     else { todo_list.appendChild(add_task_list_element); }
 
   }
@@ -63,7 +63,7 @@ const manipulateDOM = () => {
     const cancel_button = document.createElement('button');
     cancel_button.setAttribute('class', 'cancel-button');
     cancel_button.textContent = 'Cancel';
-    cancel_button.addEventListener('click', () => { list_element.remove(); create_add_task_button() });
+    cancel_button.addEventListener('click', () => { list_element.remove(); create_add_task_button(todo_list, project) });
 
     const add_task_button = document.createElement('button');
     add_task_button.setAttribute('class', 'add-task-button');
@@ -71,8 +71,9 @@ const manipulateDOM = () => {
     add_task_button.addEventListener('click', () => {
       list_element.remove();
       const new_task = ToDoTask(false, text_input_todo.value);
-      if (project) { project.addItem(new_task); }
-      create_add_task_button();
+      // console.log(project);
+      if (project) { project.addItem(new_task); refresh_todo_list_display(todo_list, project.items) }
+      create_add_task_button(todo_list, project);
     });
 
     form_footer.appendChild(cancel_button);
@@ -87,7 +88,33 @@ const manipulateDOM = () => {
   }
 
 
-  return { add_to_sidebar, remove_from_sidebar, create_add_task_button, create_add_task_form }
+  const refresh_todo_list_display = (todo_list_node, todo_list_elements) => {
+    if (todo_list_node) { todo_list_node.innerHTML = ''; }
+    else { todo_list.innerHTML = ''; }
+
+    for (let i = 0; i < todo_list_elements.length; i++) {
+      const list_element = document.createElement('li');
+      const todo_task = document.createElement('button');
+      todo_task.setAttribute('class', 'todo-task');
+      const checkbox = document.createElement('div');
+      checkbox.setAttribute('class', 'checkbox');
+      checkbox.textContent = '✓';
+      const todo_title = document.createElement('span');
+      todo_title.textContent = todo_list_elements[i].title;
+
+      todo_task.appendChild(checkbox);
+      todo_task.appendChild(todo_title);
+      list_element.appendChild(todo_task);
+      todo_list.appendChild(list_element);
+    }
+  }
+
+
+  return { add_to_sidebar,
+    remove_from_sidebar,
+    create_add_task_button,
+    create_add_task_form,
+    refresh_todo_list_display }
 };
 
 
