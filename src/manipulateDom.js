@@ -72,7 +72,7 @@ const manipulateDOM = () => {
       list_element.remove();
       const new_task = ToDoTask(false, text_input_todo.value);
       // console.log(project);
-      if (project) { project.addItem(new_task); refresh_todo_list_display(todo_list, project.items) }
+      if (project) { project.addItem(new_task); refresh_todo_list_display(todo_list, project) }
       create_add_task_button(todo_list, project);
     });
 
@@ -88,7 +88,9 @@ const manipulateDOM = () => {
   }
 
 
-  const refresh_todo_list_display = (todo_list_node, todo_list_elements) => {
+  const refresh_todo_list_display = (todo_list_node, project) => {
+    const todo_list_elements = project.items
+
     if (todo_list_node) { todo_list_node.innerHTML = ''; }
     else { todo_list.innerHTML = ''; }
 
@@ -99,6 +101,12 @@ const manipulateDOM = () => {
       const checkbox = document.createElement('div');
       checkbox.setAttribute('class', 'checkbox');
       checkbox.textContent = '✓';
+      checkbox.addEventListener('click', (e) => {
+        todo_list_elements.splice(i,1);
+        refresh_todo_list_display(todo_list_node, project);
+        create_add_task_button(todo_list_node, project);
+
+      })
       const todo_title = document.createElement('span');
       todo_title.textContent = todo_list_elements[i].title;
 
