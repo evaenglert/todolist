@@ -30,5 +30,8 @@ renderTasks(home_menu_item, 'Home', default_project);
 
 
 home_menu_item.addEventListener("click", (e) => renderTasks(e.target, 'Home', default_project));
-today_menu_item.addEventListener("click", (e) => renderTasks(e.target, 'Today'));
-upcoming_menu_item.addEventListener("click", (e) => renderTasks(e.target, 'Upcoming'));
+
+// These actually need a different function. Will need to come up with a good
+// way to sort it out but basically depending on the date we'd like to include them or not.
+// today_menu_item.addEventListener("click", (e) => renderTasks(e.target, 'Today'));
+// upcoming_menu_item.addEventListener("click", (e) => renderTasks(e.target, 'Upcoming'));
