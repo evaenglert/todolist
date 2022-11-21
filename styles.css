@@ -190,3 +190,18 @@ li.selected {
   background-color: rgb(234, 60, 60);
   color: white;
 }
+
+.input-part {
+  padding: 5px;
+  border: 1px solid black;
+  border-radius: 5px;
+}
+
+.text-input-todo {
+border: none;
+}
+
+.text-input-todo:focus-visible {
+  border: none;
+  outline: none;
+}
