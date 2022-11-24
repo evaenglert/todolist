@@ -169,6 +169,11 @@ li.selected {
 
 .text-input-todo {
   width: 99%;
+  height: 20px;
+}
+
+.text-input-todo-description {
+  width: 99%;
   height: 60px;
 }
 
@@ -197,14 +202,19 @@ li.selected {
   border-radius: 5px;
 }
 
-.text-input-todo {
-border: none;
+input {
+  border: none;
 }
 
-.text-input-todo:focus-visible {
+input:focus-visible {
   border: none;
   outline: none;
 }
+
+/* .text-input-todo:focus-visible {
+  border: none;
+  outline: none;
+} */
 
 .editor-extra-buttons {
   display: flex;
