@@ -53,9 +53,35 @@ const manipulateDOM = () => {
     const todo_form = document.createElement('div');
     todo_form.setAttribute('class', 'todo-form');
 
+    const input_part = document.createElement('div');
+    input_part.setAttribute('class', 'input-part');
+
+    const editor_title = document.createElement('div');
+    editor_title.setAttribute('class', 'editor-title');
+
+    const editor_description = document.createElement('div');
+    editor_description.setAttribute('class', 'editor-description');
+
     const text_input_todo = document.createElement('input');
     text_input_todo.setAttribute('class', 'text-input-todo');
     text_input_todo.setAttribute('type', 'text');
+    text_input_todo.setAttribute('placeholder', 'Task Name');
+
+    const text_input_todo_description = document.createElement('input');
+    text_input_todo_description.setAttribute('class', 'text-input-todo-description');
+    text_input_todo_description.setAttribute('type', 'text');
+    text_input_todo_description.setAttribute('placeholder', 'Description...');
+
+    const editor_extra_buttons = document.createElement('div');
+    editor_extra_buttons.setAttribute('class', 'editor-extra-buttons');
+
+    const date_button = document.createElement('button');
+    date_button.setAttribute('id', 'date-button');
+    date_button.textContent = 'Due date';
+
+    const project_button = document.createElement('button');
+    project_button.setAttribute('id', 'project-button');
+    project_button.textContent = 'Project';
 
     const form_footer = document.createElement('div');
     form_footer.setAttribute('class', 'form-footer');
@@ -71,15 +97,26 @@ const manipulateDOM = () => {
     add_task_button.addEventListener('click', () => {
       list_element.remove();
       const new_task = ToDoTask(false, text_input_todo.value);
-      // console.log(project);
+
       if (project) { project.addItem(new_task); refresh_todo_list_display(todo_list, project) }
       create_add_task_button(todo_list, project);
+
     });
 
     form_footer.appendChild(cancel_button);
     form_footer.appendChild(add_task_button);
 
-    todo_form.appendChild(text_input_todo);
+    editor_extra_buttons.appendChild(date_button);
+    editor_extra_buttons.appendChild(project_button);
+
+    editor_description.appendChild(text_input_todo_description);
+    editor_title.appendChild(text_input_todo);
+
+    input_part.appendChild(editor_title);
+    input_part.appendChild(editor_description);
+    input_part.appendChild(editor_extra_buttons);
+
+    todo_form.appendChild(input_part);
     todo_form.appendChild(form_footer);
 
     list_element.appendChild(todo_form);
