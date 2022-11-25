@@ -29,7 +29,7 @@ renderTasks(home_menu_item, 'Home', default_project);
 // manipulateDOM().create_add_task_form();
 
 
-home_menu_item.addEventListener("click", (e) => renderTasks(e.target, 'Home', default_project));
+home_menu_item.addEventListener("click", (e) => renderTasks(e.target, 'Home', default_project, projectManager.projects));
 
 // These actually need a different function. Will need to come up with a good
 // way to sort it out but basically depending on the date we'd like to include them or not.

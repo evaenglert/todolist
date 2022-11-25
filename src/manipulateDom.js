@@ -22,7 +22,7 @@ const manipulateDOM = () => {
     }
   }
 
-  const create_add_task_button = (todo_list_node, project) => {
+  const create_add_task_button = (todo_list_node, project, all_projects) => {
     const add_task_list_element = document.createElement('li');
     add_task_list_element.setAttribute('id', 'add-task-li');
     const add_task_button = document.createElement('button');
@@ -37,7 +37,7 @@ const manipulateDOM = () => {
     add_task_text.textContent = 'Add Task';
 
     add_task_button.appendChild(add_task_text);
-    add_task_button.addEventListener('click', () => manipulateDOM().create_add_task_form(project));
+    add_task_button.addEventListener('click', () => manipulateDOM().create_add_task_form(project, all_projects));
     add_task_list_element.appendChild(add_task_button);
 
     if (todo_list_node) { todo_list_node.appendChild(add_task_list_element);}
@@ -45,7 +45,7 @@ const manipulateDOM = () => {
 
   }
 
-  const create_add_task_form = (project) => {
+  const create_add_task_form = (project, all_projects) => {
     const add_task_li = document.querySelector('#add-task-li');
     add_task_li.remove();
 
@@ -82,6 +82,8 @@ const manipulateDOM = () => {
     const project_button = document.createElement('button');
     project_button.setAttribute('id', 'project-button');
     project_button.textContent = 'Project';
+    project_button.addEventListener('click', (e) => project_popup(all_projects, e))
+
 
     const form_footer = document.createElement('div');
     form_footer.setAttribute('class', 'form-footer');
@@ -99,7 +101,7 @@ const manipulateDOM = () => {
       const new_task = ToDoTask(false, text_input_todo.value);
 
       if (project) { project.addItem(new_task); refresh_todo_list_display(todo_list, project) }
-      create_add_task_button(todo_list, project);
+      create_add_task_button(todo_list, project, all_projects);
 
     });
 
@@ -125,7 +127,7 @@ const manipulateDOM = () => {
   }
 
 
-  const refresh_todo_list_display = (todo_list_node, project) => {
+  const refresh_todo_list_display = (todo_list_node, project, all_projects) => {
     const todo_list_elements = project.items
 
     if (todo_list_node) { todo_list_node.innerHTML = ''; }
@@ -141,7 +143,7 @@ const manipulateDOM = () => {
       checkbox.addEventListener('click', (e) => {
         todo_list_elements.splice(i,1);
         refresh_todo_list_display(todo_list_node, project);
-        create_add_task_button(todo_list_node, project);
+        create_add_task_button(todo_list_node, project, all_projects);
 
       })
       const todo_title = document.createElement('span');
@@ -154,12 +156,36 @@ const manipulateDOM = () => {
     }
   }
 
+  const project_popup = (all_projects, e) => {
+    // class="project-dropdown"
+    const todo_form = document.querySelector('.todo-form');
+
+    const project_dropdown = document.createElement('div');
+    project_dropdown.setAttribute('class', 'project-dropdown');
+
+    for (let i=0; i < all_projects.length; i++) {
+      const new_project = document.createElement('div');
+      new_project.textContent = all_projects[i];
+
+      new_project.addEventListener('click', (e) => {
+        e.textContent = new_project.textContent;
+        self.remove();
+      });
+
+      project_dropdown.appendChild(new_project);
+    }
+
+    todo_form.appendChild(project_dropdown);
+
+  }
+
 
   return { add_to_sidebar,
     remove_from_sidebar,
     create_add_task_button,
     create_add_task_form,
-    refresh_todo_list_display }
+    refresh_todo_list_display,
+    project_popup }
 };
 
 
