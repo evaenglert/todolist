@@ -30,6 +30,8 @@ const renderTasks = (e, project_name, project, all_projects) => {
   main_content.appendChild(todo_list);
 
   manipulateDOM().refresh_todo_list_display(todo_list, project);
+  console.log(all_projects);
+  console.log(all_projects.length);
   manipulateDOM().create_add_task_button(todo_list, project, all_projects);
 
 

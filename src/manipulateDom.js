@@ -158,14 +158,14 @@ const manipulateDOM = () => {
 
   const project_popup = (all_projects, e) => {
     // class="project-dropdown"
-    const todo_form = document.querySelector('.todo-form');
+    const input_part = document.querySelector('.input-part');
 
     const project_dropdown = document.createElement('div');
     project_dropdown.setAttribute('class', 'project-dropdown');
 
     for (let i=0; i < all_projects.length; i++) {
       const new_project = document.createElement('div');
-      new_project.textContent = all_projects[i];
+      new_project.textContent = all_projects[i].project_name;
 
       new_project.addEventListener('click', (e) => {
         e.textContent = new_project.textContent;
@@ -175,7 +175,7 @@ const manipulateDOM = () => {
       project_dropdown.appendChild(new_project);
     }
 
-    todo_form.appendChild(project_dropdown);
+    input_part.appendChild(project_dropdown);
 
   }
 
