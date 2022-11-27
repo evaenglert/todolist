@@ -22,9 +22,11 @@ const today_menu_item = document.querySelector('#today');
 const upcoming_menu_item = document.querySelector('#upcoming');
 
 
-renderTasks(home_menu_item, 'Home', default_project, projectManager.projects, projectManager);
+renderTasks(home_menu_item, 'Home', default_project, projectManager);
 
-home_menu_item.addEventListener("click", (e) => renderTasks(e.target, 'Home', default_project, projectManager.projects, projectManager));
+
+// Move this to backend.js
+home_menu_item.addEventListener("click", (e) => renderTasks(e.target, 'Home', default_project, projectManager));
 
 // These actually need a different function. Will need to come up with a good
 // way to sort it out but basically depending on the date we'd like to include them or not.

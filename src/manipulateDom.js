@@ -22,7 +22,7 @@ const manipulateDOM = () => {
     }
   }
 
-  const create_add_task_button = (todo_list_node, project, all_projects, projectManager) => {
+  const create_add_task_button = (todo_list_node, project, projectManager) => {
     const add_task_list_element = document.createElement('li');
     add_task_list_element.setAttribute('id', 'add-task-li');
     const add_task_button = document.createElement('button');
@@ -37,7 +37,7 @@ const manipulateDOM = () => {
     add_task_text.textContent = 'Add Task';
 
     add_task_button.appendChild(add_task_text);
-    add_task_button.addEventListener('click', () => manipulateDOM().create_add_task_form(project, all_projects, projectManager));
+    add_task_button.addEventListener('click', () => create_add_task_form(project, projectManager));
     add_task_list_element.appendChild(add_task_button);
 
     if (todo_list_node) { todo_list_node.appendChild(add_task_list_element);}
@@ -45,7 +45,7 @@ const manipulateDOM = () => {
 
   }
 
-  const create_add_task_form = (project, all_projects, projectManager) => {
+  const create_add_task_form = (project, projectManager) => {
     const add_task_li = document.querySelector('#add-task-li');
     add_task_li.remove();
 
@@ -82,7 +82,7 @@ const manipulateDOM = () => {
     const project_button = document.createElement('button');
     project_button.setAttribute('id', 'project-button');
     project_button.textContent = project.project_name;
-    project_button.addEventListener('click', (e) => project_popup(all_projects, e))
+    project_button.addEventListener('click', (e) => project_popup(projectManager.projects, e))
 
 
     const form_footer = document.createElement('div');
@@ -91,7 +91,7 @@ const manipulateDOM = () => {
     const cancel_button = document.createElement('button');
     cancel_button.setAttribute('class', 'cancel-button');
     cancel_button.textContent = 'Cancel';
-    cancel_button.addEventListener('click', () => { list_element.remove(); create_add_task_button(todo_list, project, all_projects) });
+    cancel_button.addEventListener('click', () => { list_element.remove(); create_add_task_button(todo_list, project, projectManager) });
 
     const add_task_button = document.createElement('button');
     add_task_button.setAttribute('class', 'add-task-button');
@@ -102,10 +102,12 @@ const manipulateDOM = () => {
       const new_task = ToDoTask(false, text_input_todo.value,
         text_input_todo_description.value, '2022-12-31', project_button.textContent);
 
+      console.log(projectManager);
       const selected_project = projectManager.return_project(project_button.textContent);
+      selected_project.addItem(new_task);
 
-      if (project) { project.addItem(new_task); refresh_todo_list_display(todo_list, project) }
-      create_add_task_button(todo_list, project, all_projects, projectManager);
+      if (project) {refresh_todo_list_display(todo_list, project) }
+      create_add_task_button(todo_list, project, projectManager);
 
     });
 
@@ -131,7 +133,7 @@ const manipulateDOM = () => {
   }
 
 
-  const refresh_todo_list_display = (todo_list_node, project, all_projects) => {
+  const refresh_todo_list_display = (todo_list_node, project, projectManager) => {
     const todo_list_elements = project.items
 
     if (todo_list_node) { todo_list_node.innerHTML = ''; }
@@ -147,7 +149,7 @@ const manipulateDOM = () => {
       checkbox.addEventListener('click', (e) => {
         todo_list_elements.splice(i,1);
         refresh_todo_list_display(todo_list_node, project);
-        create_add_task_button(todo_list_node, project, all_projects, projectManager);
+        create_add_task_button(todo_list_node, project, projectManager);
 
       })
       const todo_title = document.createElement('span');
@@ -187,7 +189,6 @@ const manipulateDOM = () => {
   return { add_to_sidebar,
     remove_from_sidebar,
     create_add_task_button,
-    create_add_task_form,
     refresh_todo_list_display
 }
 };

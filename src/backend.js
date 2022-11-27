@@ -37,11 +37,13 @@ const ToDoProject = function (project_name, items) {
 // How do I create a new project and new items? I also need an item that stores my different projects
 const ProjectManager = function (projects) {
 
+  const projectManager = self;
+
   const addItem = (project_name) => {
     projects.push(project_name)
     // some function here that makes sure that the new project is also added to the front end.
     const new_project = manipulateDOM().add_to_sidebar(project_name.project_name);
-    new_project.addEventListener('click', (e) => renderTasks(e.target, project_name.project_name, project_name, projects));
+    new_project.addEventListener('click', (e) => renderTasks(e.target, project_name.project_name, project_name, projectManager));
   }
 
   const removeItem = (project_name) => {
