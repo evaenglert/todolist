@@ -7,14 +7,12 @@ import { manipulateDOM } from './manipulateDom.js';
 
 const default_project = ToDoProject('Home', []);
 
-const sample_project = ToDoProject('sample_project', []);
-const project2 = ToDoProject('My second amazing project', []);
-const project3 = ToDoProject('My third amazing project!!', []);
+const project3 = ToDoProject('Coding journey', []);
 
 
-const projectManager = ProjectManager([]);
+const projectManager = ProjectManager([default_project]);
+// projectManager.addItem(default_project);
 projectManager.addItem(project3);
-projectManager.removeItem(project2);
 
 
 const side_bar = document.querySelector('#side-bar');
@@ -23,12 +21,10 @@ const home_menu_item = document.querySelector('#home-project');
 const today_menu_item = document.querySelector('#today');
 const upcoming_menu_item = document.querySelector('#upcoming');
 
-const all_projects = [default_project].concat(projectManager.projects);
 
-renderTasks(home_menu_item, 'Home', default_project, all_projects);
-// manipulateDOM().create_add_task_form();
+renderTasks(home_menu_item, 'Home', default_project, projectManager.projects, projectManager);
 
-home_menu_item.addEventListener("click", (e) => renderTasks(e.target, 'Home', default_project, all_projects));
+home_menu_item.addEventListener("click", (e) => renderTasks(e.target, 'Home', default_project, projectManager.projects, projectManager));
 
 // These actually need a different function. Will need to come up with a good
 // way to sort it out but basically depending on the date we'd like to include them or not.

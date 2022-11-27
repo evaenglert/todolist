@@ -1,11 +1,11 @@
 import { renderTasks } from "./home";
 import { manipulateDOM } from "./manipulateDom";
 
-const ToDoTask = function (is_done, title, description, dueDate, priority, project) {
+const ToDoTask = function (is_done, title, description, dueDate, project) {
   // Describes a single task in the todo list
 
   return {
-    is_done, title, description, dueDate, priority, project,
+    is_done, title, description, dueDate, project,
     modifyProperty(property_to_modify, new_value) {
       this[property_to_modify] = new_value;
     }
@@ -41,7 +41,7 @@ const ProjectManager = function (projects) {
     projects.push(project_name)
     // some function here that makes sure that the new project is also added to the front end.
     const new_project = manipulateDOM().add_to_sidebar(project_name.project_name);
-    new_project.addEventListener('click', (e) => renderTasks(e.target, project_name.project_name, project_name));
+    new_project.addEventListener('click', (e) => renderTasks(e.target, project_name.project_name, project_name, projects));
   }
 
   const removeItem = (project_name) => {
@@ -51,7 +51,15 @@ const ProjectManager = function (projects) {
     manipulateDOM().remove_from_sidebar(project_name.project_name);
   }
 
-  return { projects, addItem, removeItem }
+  const return_project = (project_name) => {
+    for (let i=0; i<projects.length; i++) {
+      if (projects[i].project_name === project_name) {
+        return projects[i];
+      }}
+
+  }
+
+  return { projects, addItem, removeItem, return_project }
 };
 
 
