@@ -17,8 +17,6 @@ projectManager.addItem(project3);
 projectManager.removeItem(project2);
 
 
-console.log(projectManager);
-
 const side_bar = document.querySelector('#side-bar');
 
 const home_menu_item = document.querySelector('#home-project');
@@ -30,7 +28,6 @@ const all_projects = [default_project].concat(projectManager.projects);
 renderTasks(home_menu_item, 'Home', default_project, all_projects);
 // manipulateDOM().create_add_task_form();
 
-// console.log(projectManager.projects);
 home_menu_item.addEventListener("click", (e) => renderTasks(e.target, 'Home', default_project, all_projects));
 
 // These actually need a different function. Will need to come up with a good

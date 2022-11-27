@@ -91,7 +91,7 @@ const manipulateDOM = () => {
     const cancel_button = document.createElement('button');
     cancel_button.setAttribute('class', 'cancel-button');
     cancel_button.textContent = 'Cancel';
-    cancel_button.addEventListener('click', () => { list_element.remove(); create_add_task_button(todo_list, project) });
+    cancel_button.addEventListener('click', () => { list_element.remove(); create_add_task_button(todo_list, project, all_projects) });
 
     const add_task_button = document.createElement('button');
     add_task_button.setAttribute('class', 'add-task-button');
@@ -156,7 +156,7 @@ const manipulateDOM = () => {
     }
   }
 
-  const project_popup = (all_projects, e) => {
+  const project_popup = (all_projects, project_button) => {
     // class="project-dropdown"
     const input_part = document.querySelector('.input-part');
 
@@ -168,8 +168,8 @@ const manipulateDOM = () => {
       new_project.textContent = all_projects[i].project_name;
 
       new_project.addEventListener('click', (e) => {
-        e.textContent = new_project.textContent;
-        self.remove();
+        project_button.target.textContent = new_project.textContent;
+        project_dropdown.remove();
       });
 
       project_dropdown.appendChild(new_project);
@@ -184,8 +184,7 @@ const manipulateDOM = () => {
     remove_from_sidebar,
     create_add_task_button,
     create_add_task_form,
-    refresh_todo_list_display,
-    project_popup }
+    refresh_todo_list_display}
 };
 
 
