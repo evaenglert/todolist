@@ -39,21 +39,20 @@ const ProjectManager = function (projects) {
 
   const projectManager = self;
 
-  const addItem = (project_name) => {
-    projects.push(project_name)
+  const addItem = (project) => {
+    projects.push(project)
     // some function here that makes sure that the new project is also added to the front end.
-    const new_project = manipulateDOM().add_to_sidebar(project_name.project_name);
-    new_project.addEventListener('click', (e) => renderTasks(e.target, project_name.project_name, project_name, projectManager));
+    // manipulateDOM().add_to_sidebar(project);
   }
 
-  const removeItem = (project_name) => {
-    if (projects.indexOf(project_name) > -1) {
-      projects.splice(projects.indexOf(project_name), 1);
+  const removeItem = (project) => {
+    if (projects.indexOf(project) > -1) {
+      projects.splice(projects.indexOf(project), 1);
     }
-    manipulateDOM().remove_from_sidebar(project_name.project_name);
+    manipulateDOM().remove_from_sidebar(project.project_name);
   }
 
-  const return_project = (project_name) => {
+  const returnProject = (project_name) => {
     for (let i=0; i<projects.length; i++) {
       if (projects[i].project_name === project_name) {
         return projects[i];
@@ -61,7 +60,7 @@ const ProjectManager = function (projects) {
 
   }
 
-  return { projects, addItem, removeItem, return_project }
+  return { projects, addItem, removeItem, returnProject }
 };
 
 

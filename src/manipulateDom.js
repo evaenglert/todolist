@@ -1,17 +1,18 @@
 import { ToDoTask, ToDoProject, ProjectManager } from './backend.js'
+import { renderTasks } from './home.js'
 
 const manipulateDOM = () => {
   const side_bar = document.querySelector('#side-bar');
   const projects = document.querySelector('#projects');
   const todo_list = document.querySelector('#todo-list');
 
-  const add_to_sidebar = (project_to_add) => {
+  const add_to_sidebar = (project_to_add, projectManager) => {
     const new_project = document.createElement('li');
-    new_project.textContent = project_to_add;
+    new_project.textContent = project_to_add.project_name;
+
+    new_project.addEventListener('click', (e) => renderTasks(e.target, project_to_add, projectManager));
 
     projects.appendChild(new_project);
-
-    return new_project;
   }
 
   const remove_from_sidebar = (project_to_remove) => {
@@ -102,11 +103,10 @@ const manipulateDOM = () => {
       const new_task = ToDoTask(false, text_input_todo.value,
         text_input_todo_description.value, '2022-12-31', project_button.textContent);
 
-      console.log(projectManager);
-      const selected_project = projectManager.return_project(project_button.textContent);
+      const selected_project = projectManager.returnProject(project_button.textContent);
       selected_project.addItem(new_task);
 
-      if (project) {refresh_todo_list_display(todo_list, project) }
+      if (project) { refresh_todo_list_display(todo_list, project, projectManager) }
       create_add_task_button(todo_list, project, projectManager);
 
     });
@@ -134,7 +134,8 @@ const manipulateDOM = () => {
 
 
   const refresh_todo_list_display = (todo_list_node, project, projectManager) => {
-    const todo_list_elements = project.items
+
+    const todo_list_elements = project.items;
 
     if (todo_list_node) { todo_list_node.innerHTML = ''; }
     else { todo_list.innerHTML = ''; }
@@ -148,7 +149,7 @@ const manipulateDOM = () => {
       checkbox.textContent = '✓';
       checkbox.addEventListener('click', (e) => {
         todo_list_elements.splice(i,1);
-        refresh_todo_list_display(todo_list_node, project);
+        refresh_todo_list_display(todo_list_node, project, projectManager);
         create_add_task_button(todo_list_node, project, projectManager);
 
       })
