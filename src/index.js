@@ -1,35 +1,32 @@
-import {ToDoTask, ToDoProject, ProjectManager} from './backend.js'
-import { renderTasks } from './home.js'
-import { manipulateDOM } from './manipulateDom.js';
+import { ToDoProject, ProjectManager } from './backend';
+import { renderTasks } from './home';
+import { manipulateDOM } from './manipulateDom';
 
 // -------------------------------------------------------------------
 // 'home' project is not deletable. <- have to make sure this is encoded.
 
-const default_project = ToDoProject('Home', []);
+const defaultProject = ToDoProject('Home', []);
 
 const project3 = ToDoProject('Coding journey', []);
 
-
-const projectManager = ProjectManager([default_project]);
+const projectManager = ProjectManager([defaultProject]);
 
 projectManager.addItem(project3);
 
+// const side_bar = document.querySelector('#side-bar');
 
-const side_bar = document.querySelector('#side-bar');
-
-const home_menu_item = document.querySelector('#home-project');
+const homeMenuItem = document.querySelector('#home-project');
 const today_menu_item = document.querySelector('#today');
 const upcoming_menu_item = document.querySelector('#upcoming');
 
-for (let i=0; i<projectManager.projects.length; i++) {
-  if (projectManager.projects[i].project_name != 'Home') {
-  manipulateDOM().add_to_sidebar(projectManager.projects[i], projectManager);}
+for (let i = 0; i < projectManager.projects.length; i++) {
+  if (projectManager.projects[i].project_name !== 'Home') { manipulateDOM().add_to_sidebar(projectManager.projects[i], projectManager); }
 }
 
-renderTasks(home_menu_item, default_project, projectManager);
+renderTasks(homeMenuItem, defaultProject, projectManager);
 
 // Move this to backend.js
-home_menu_item.addEventListener("click", (e) => renderTasks(e.target, default_project, projectManager));
+homeMenuItem.addEventListener('click', (e) => renderTasks(e.target, defaultProject, projectManager));
 
 // These actually need a different function. Will need to come up with a good
 // way to sort it out but basically depending on the date we'd like to include them or not.
